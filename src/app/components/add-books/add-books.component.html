@@ -1,0 +1,19 @@
+<form [formGroup]="form">
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" formControlName="title" class="form-control" id="title">
+  </div>
+  <div class="form-group">
+    <label for="title">Author</label>
+    <input type="text" formControlName="author" class="form-control" id="author">
+  </div>
+  <div class="form-group">
+    <label for="title">ISBN</label>
+    <input type="text" formControlName="isbn" class="form-control" id="isbn">
+  </div>
+  <div class="form-group">
+    <label for="title">Price</label>
+    <input type="text" formControlName="price" class="form-control" id="price">
+  </div>
+  <button type="button" (click)="onSubmit()" class="btn btn-primary">Submit</button>
+</form>

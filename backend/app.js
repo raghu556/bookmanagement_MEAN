@@ -3,11 +3,13 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
+var cors = require('cors');
 var db = require('./model/db');
 var mongoose = require('mongoose');
 var books = require('./routes/index');
 
 var app = express();
+app.use(cors())
 
 var book = require('./model/books');
 console.log("Added books Model");
