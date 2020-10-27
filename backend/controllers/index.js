@@ -48,8 +48,23 @@ router.route('/books')
     }
   })
 
+
+router.route('/book/:id')
+  .get(function (req, res, next) {
+    mongoose.model('Books').findById(req.params.id, function (err, book) {
+      if (err) {
+        return console.error(err);
+      }
+      else {
+        // var userRating = userAvgRating(err, books);
+        res.json(book);
+      }
+    });
+  })
+
 router.route('/addBook')
   .get(function (req, res, next) {
+    var bookid = req.params.id;
     mongoose.model('Books').find({}, function (err, books) {
       if (err) {
         return console.error(err);
@@ -91,7 +106,7 @@ router.route('/addBook')
     })
   })
 
-router.route('/addreviews/:id')
+router.route('/addreview/:id')
   .get(function (req, res, next) {
     var booksData;
     mongoose.model('Books').find({}, function (err, books) {
@@ -134,9 +149,9 @@ router.route('/addreviews/:id')
         //console.log("Avg Rating" + userRating);
         book.save(function (err) {
           if (!err) {
-            res.send("Reviews Count" + book.reviews.length);
+            res.json("Reviews Count" + book.reviews.length);
           } else {
-            res.send("There was an error when adding the patient information to the database!");
+            res.json("There was an error when adding the patient information to the database!");
           }
         });
       }
@@ -181,7 +196,7 @@ router.route('/delete/:id')
       }
     })
   })
-  .post(function (req, res) {
+  .delete(function (req, res) {
     mongoose.model('Books').findById(req.params.id, function (err, book) {
       console.log("Delete Method called");
       if (err) {
